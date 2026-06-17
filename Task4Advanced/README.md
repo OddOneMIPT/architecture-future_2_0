@@ -20,16 +20,7 @@
 **Supporting:** Customer 360 · Finance & Reporting · HR · Inventory & Supply · Pharma · IoT
 **Platform/Legacy:** Self-Service Analytics Platform · Legacy Bridge (ACL к DWH/Camel)
 
-## Ключевые события (примеры из условия)
-
-- **Зарегистрирован новый пациент** (`patient.PatientRegistered.v1`) — Patient Care
-- **Пройдено исследование ИИ** (`diagnostics.AiStudyCompleted.v1`) — Diagnostics AI
-- **Создан кредитный договор** (`lending.LoanCreated.v1`) — Lending
-
-Полный каталог — в [`events.md`](./events.md).
-
 ## Согласованность с другими заданиями
 Имена доменов, агрегатов и событий совпадают с C4-моделью в
 [`../Task3Advanced/`](../Task3Advanced/) и роадмапом в [`../Task5Advanced/`](../Task5Advanced/).
 
-> Диаграммы выполнены в **Mermaid** и рендерятся прямо на GitHub.

@@ -60,8 +60,6 @@ terraform output            # выходы (id, ip, имена ВМ, диски)
 terraform destroy -var-file=dev.tfvars   # удалить окружение
 ```
 
-### Замечание про Docker-демон (важно для проверки)
-
 Провайдер Terraform подключается к стандартному сокету Docker
 (`unix:///var/run/docker.sock`). Если ваш `docker` CLI настроен на другой context
 (например, Lima/Colima), укажите тот же сокет для проверки:

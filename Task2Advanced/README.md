@@ -72,7 +72,7 @@ docker compose -f docker-compose.minio.yml down -v
 
 ## CI/CD пайплайн (`.github/workflows/terraform.yml`)
 
-Два джоба:
+Две джобы:
 
 1. **plan** (на PR и push в `main`): `terraform fmt -check` → `init` (backend S3) →
    `validate` → `plan`. Инфраструктура не меняется; план сохраняется артефактом.
