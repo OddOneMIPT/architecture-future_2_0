@@ -1,0 +1,31 @@
+### docker ps — ВМ окружений Task1 (dev/stage/prod)
+
+NAMES                 STATUS                          PORTS
+future20-dev-vm-0     Up 18 seconds                   0.0.0.0:18080->80/tcp
+future20-prod-vm-2    Up 8 minutes                    0.0.0.0:18102->80/tcp
+future20-prod-vm-1    Up 8 minutes                    0.0.0.0:18101->80/tcp
+future20-prod-vm-0    Up 8 minutes                    0.0.0.0:18100->80/tcp
+future20-stage-vm-1   Up 9 minutes                    0.0.0.0:18091->80/tcp
+future20-stage-vm-0   Up 9 minutes                    0.0.0.0:18090->80/tcp
+
+### Ресурсы по ВМ — подтверждение разных конфигураций окружений
+name                  RAM_MB    cpu_shares   network                IP
+future20-dev-vm-0     512       1024         future20-dev-subnet    172.30.10.2
+future20-prod-vm-0    2048      4096         future20-prod-subnet   172.30.30.3
+future20-prod-vm-1    2048      4096         future20-prod-subnet   172.30.30.4
+future20-prod-vm-2    2048      4096         future20-prod-subnet   172.30.30.2
+future20-stage-vm-0   1024      2048         future20-stage-subnet  172.30.20.3
+future20-stage-vm-1   1024      2048         future20-stage-subnet  172.30.20.2
+
+(dev=1ядро/512МБ, stage=2/1024, prod=4/2048 — конфигурации применились из <env>.tfvars)
+
+### HTTP-проверка опубликованных портов (nginx :80 -> host)
+localhost:18080 -> HTTP 200
+localhost:18090 -> HTTP 200
+localhost:18091 -> HTTP 200
+localhost:18100 -> HTTP 200
+localhost:18101 -> HTTP 200
+localhost:18102 -> HTTP 200
+
+### SSH-ключ в подключённом диске /data/.ssh/authorized_keys (пример dev)
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZtfTD8uo9RL+rtBgxvSmV2SAPvMJD67q3tEuFqFi08 future20-demo

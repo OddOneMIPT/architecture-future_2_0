@@ -1,0 +1,5 @@
+### Локального файла состояния НЕТ:
+OK: ./terraform.tfstate отсутствует (состояние удалённое)
+
+### Состояние лежит в бакете MinIO future20-tfstate (ключ task2/terraform.tfstate):
+[2026-06-16 12:47:54 UTC]  16KiB STANDARD task2/terraform.tfstate

@@ -1,0 +1,133 @@
+name: Terraform (Task2Advanced)
+
+# CI/CD для Terraform-кода Task2Advanced с удалённым состоянием в S3-совместимом
+# хранилище (MinIO / Yandex Object Storage / AWS S3).
+#
+#  - PR / push  -> fmt + init + validate + plan (без изменения инфраструктуры);
+#  - apply      -> только вручную (workflow_dispatch) и через GitHub Environment
+#                  "production" с обязательным approval.
+
+on:
+  pull_request:
+    paths:
+      - "Task2Advanced/**"
+      - ".github/workflows/terraform.yml"
+  push:
+    branches: [main]
+    paths:
+      - "Task2Advanced/**"
+      - ".github/workflows/terraform.yml"
+  workflow_dispatch: {} # ручной запуск apply "по кнопке"
+
+# Минимальные права токена (безопасность).
+permissions:
+  contents: read
+
+env:
+  TF_WORKING_DIR: Task2Advanced
+  TF_VERSION: "1.15.6"
+  # Креды и адрес backend — ТОЛЬКО из secrets/variables, не в коде.
+  # Для самодостаточного прогона с локальным MinIO заданы безопасные значения по умолчанию.
+  AWS_ACCESS_KEY_ID: ${{ secrets.TFSTATE_ACCESS_KEY || 'minioadmin' }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.TFSTATE_SECRET_KEY || 'minioadmin' }}
+  TFSTATE_ENDPOINT: ${{ vars.TFSTATE_ENDPOINT || 'http://localhost:9000' }}
+  TFSTATE_BUCKET: ${{ vars.TFSTATE_BUCKET || 'future20-tfstate' }}
+
+jobs:
+  plan:
+    name: fmt / init / validate / plan
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.TF_WORKING_DIR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Поднимаем локальный MinIO только если endpoint указывает на localhost
+      # (для самодостаточного прогона). Для внешнего S3 этот шаг пропускается.
+      - name: Start local MinIO (self-contained backend)
+        if: ${{ env.TFSTATE_ENDPOINT == 'http://localhost:9000' }}
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=minioadmin -e MINIO_ROOT_PASSWORD=minioadmin \
+            minio/minio:latest server /data
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:9000/minio/health/live && break || sleep 2
+          done
+          docker run --rm --network host \
+            -e MC_HOST_local=http://minioadmin:minioadmin@localhost:9000 \
+            minio/mc:latest mb -p "local/${TFSTATE_BUCKET}"
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Terraform fmt
+        run: terraform fmt -check -recursive
+
+      - name: Generate backend config from variables
+        run: |
+          cat > backend.ci.hcl <<EOF
+          bucket    = "${TFSTATE_BUCKET}"
+          endpoints = { s3 = "${TFSTATE_ENDPOINT}" }
+          EOF
+
+      - name: Terraform init
+        run: terraform init -input=false -backend-config=backend.ci.hcl
+
+      - name: Terraform validate
+        run: terraform validate -no-color
+
+      - name: Terraform plan
+        run: terraform plan -input=false -no-color -var-file=prod.tfvars -out=tfplan
+
+      - name: Upload plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan
+          path: ${{ env.TF_WORKING_DIR }}/tfplan
+          retention-days: 1
+
+  apply:
+    name: apply (manual approval)
+    needs: plan
+    # apply выполняется только при ручном запуске.
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    # GitHub Environment с required reviewers -> apply ждёт ручного подтверждения.
+    environment: production
+    defaults:
+      run:
+        working-directory: ${{ env.TF_WORKING_DIR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start local MinIO (self-contained backend)
+        if: ${{ env.TFSTATE_ENDPOINT == 'http://localhost:9000' }}
+        run: |
+          docker run -d --name minio -p 9000:9000 \
+            -e MINIO_ROOT_USER=minioadmin -e MINIO_ROOT_PASSWORD=minioadmin \
+            minio/minio:latest server /data
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:9000/minio/health/live && break || sleep 2
+          done
+          docker run --rm --network host \
+            -e MC_HOST_local=http://minioadmin:minioadmin@localhost:9000 \
+            minio/mc:latest mb -p "local/${TFSTATE_BUCKET}"
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Generate backend config from variables
+        run: |
+          cat > backend.ci.hcl <<EOF
+          bucket    = "${TFSTATE_BUCKET}"
+          endpoints = { s3 = "${TFSTATE_ENDPOINT}" }
+          EOF
+
+      - name: Terraform init
+        run: terraform init -input=false -backend-config=backend.ci.hcl
+
+      - name: Terraform apply
+        run: terraform apply -input=false -auto-approve -no-color -var-file=prod.tfvars

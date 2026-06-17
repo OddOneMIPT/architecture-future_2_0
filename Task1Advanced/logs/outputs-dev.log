@@ -1,0 +1,14 @@
+environment = "dev"
+subnet = "future20-dev-subnet"
+vm_disk_names = [
+  "future20-dev-vm-0-disk",
+]
+vm_ids = [
+  "848660b3e182d2d593ddc5c19694b824d68ce68c932f60ca02171592acf6c0ec",
+]
+vm_ip_addresses = [
+  "172.30.10.2",
+]
+vm_names = [
+  "future20-dev-vm-0",
+]

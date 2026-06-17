@@ -1,0 +1,277 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_network.subnet will be created
+  + resource "docker_network" "subnet" {
+      + driver      = "bridge"
+      + id          = (known after apply)
+      + internal    = (known after apply)
+      + ipam_driver = "default"
+      + name        = "future20-prod-subnet-rs"
+      + options     = (known after apply)
+      + scope       = (known after apply)
+
+      + ipam_config {
+          + subnet   = "172.31.30.0/24"
+            # (2 unchanged attributes hidden)
+        }
+
+      + labels {
+          + label = "environment"
+          + value = "prod"
+        }
+    }
+
+  # module.vm.docker_container.vm[0] will be created
+  + resource "docker_container" "vm" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = [
+          + "/bin/sh",
+          + "-c",
+          + "mkdir -p /data/.ssh && printf '%s\\n' \"$SSH_PUBLIC_KEY\" > /data/.ssh/authorized_keys && chmod 600 /data/.ssh/authorized_keys && exec nginx -g 'daemon off;'",
+        ]
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + cpu_shares                                  = 2048
+      + entrypoint                                  = (known after apply)
+      + env                                         = (sensitive value)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = (known after apply)
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + memory                                      = 1024
+      + memory_reservation                          = 0
+      + must_run                                    = true
+      + name                                        = "future20-rs-vm-0"
+      + network_data                                = (known after apply)
+      + network_mode                                = "bridge"
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "unless-stopped"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + healthcheck (known after apply)
+
+      + labels {
+          + label = "cores"
+          + value = "2"
+        }
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "environment"
+          + value = "prod"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+      + labels {
+          + label = "memory_mb"
+          + value = "1024"
+        }
+      + labels {
+          + label = "module"
+          + value = "vm"
+        }
+      + labels {
+          + label = "state"
+          + value = "remote-s3"
+        }
+
+      + networks_advanced {
+          + aliases      = []
+          + name         = "future20-prod-subnet-rs"
+            # (3 unchanged attributes hidden)
+        }
+
+      + ports {
+          + external = 18200
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+
+      + volumes {
+          + container_path = "/data"
+          + volume_name    = "future20-rs-vm-0-disk"
+            # (2 unchanged attributes hidden)
+        }
+    }
+
+  # module.vm.docker_container.vm[1] will be created
+  + resource "docker_container" "vm" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = [
+          + "/bin/sh",
+          + "-c",
+          + "mkdir -p /data/.ssh && printf '%s\\n' \"$SSH_PUBLIC_KEY\" > /data/.ssh/authorized_keys && chmod 600 /data/.ssh/authorized_keys && exec nginx -g 'daemon off;'",
+        ]
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + cpu_shares                                  = 2048
+      + entrypoint                                  = (known after apply)
+      + env                                         = (sensitive value)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = (known after apply)
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + memory                                      = 1024
+      + memory_reservation                          = 0
+      + must_run                                    = true
+      + name                                        = "future20-rs-vm-1"
+      + network_data                                = (known after apply)
+      + network_mode                                = "bridge"
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "unless-stopped"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + healthcheck (known after apply)
+
+      + labels {
+          + label = "cores"
+          + value = "2"
+        }
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "environment"
+          + value = "prod"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+      + labels {
+          + label = "memory_mb"
+          + value = "1024"
+        }
+      + labels {
+          + label = "module"
+          + value = "vm"
+        }
+      + labels {
+          + label = "state"
+          + value = "remote-s3"
+        }
+
+      + networks_advanced {
+          + aliases      = []
+          + name         = "future20-prod-subnet-rs"
+            # (3 unchanged attributes hidden)
+        }
+
+      + ports {
+          + external = 18201
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+
+      + volumes {
+          + container_path = "/data"
+          + volume_name    = "future20-rs-vm-1-disk"
+            # (2 unchanged attributes hidden)
+        }
+    }
+
+  # module.vm.docker_image.this will be created
+  + resource "docker_image" "this" {
+      + id           = (known after apply)
+      + image_id     = (known after apply)
+      + keep_locally = true
+      + name         = "nginx:alpine"
+      + repo_digest  = (known after apply)
+    }
+
+  # module.vm.docker_volume.disk[0] will be created
+  + resource "docker_volume" "disk" {
+      + driver     = (known after apply)
+      + id         = (known after apply)
+      + mountpoint = (known after apply)
+      + name       = "future20-rs-vm-0-disk"
+
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+    }
+
+  # module.vm.docker_volume.disk[1] will be created
+  + resource "docker_volume" "disk" {
+      + driver     = (known after apply)
+      + id         = (known after apply)
+      + mountpoint = (known after apply)
+      + name       = "future20-rs-vm-1-disk"
+
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + environment     = "prod"
+  + subnet          = "future20-prod-subnet-rs"
+  + vm_ip_addresses = [
+      + (known after apply),
+      + (known after apply),
+    ]
+  + vm_names        = [
+      + "future20-rs-vm-0",
+      + "future20-rs-vm-1",
+    ]
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
