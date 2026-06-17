@@ -1,0 +1,22 @@
+environment = "prod"
+subnet = "future20-prod-subnet"
+vm_disk_names = [
+  "future20-prod-vm-0-disk",
+  "future20-prod-vm-1-disk",
+  "future20-prod-vm-2-disk",
+]
+vm_ids = [
+  "d3af5a7e17203f36c9dcb64b1483270efc72595423337dd5322f47f17eaa7abb",
+  "68635c47288a403d2a0f520f02097db3f9bc0188ede303f2b00c24859a531386",
+  "3e7d569f5e98e1af1a9f5ba87af55dc132e24107be22b57cf77a7d8928e559a7",
+]
+vm_ip_addresses = [
+  "172.30.30.3",
+  "172.30.30.4",
+  "172.30.30.2",
+]
+vm_names = [
+  "future20-prod-vm-0",
+  "future20-prod-vm-1",
+  "future20-prod-vm-2",
+]

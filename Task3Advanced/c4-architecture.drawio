@@ -1,0 +1,497 @@
+<mxfile host="65bd71144e">
+    <diagram name="C4 Context" id="c4-context">
+        <mxGraphModel dx="1192" dy="1894" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="ctx_analyst" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Бизнес-пользователь / аналитик&lt;br&gt;[Person]&lt;br&gt;Строит отчёты и собственные срезы в рамках уровня доступа&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="-190" width="50" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_doctor" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Врач клиники&lt;br&gt;[Person]&lt;br&gt;Работает с клиническими данными и результатами ИИ-диагностики&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="-190" width="50" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_banker" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Сотрудник финтех/банка&lt;br&gt;[Person]&lt;br&gt;Кредиты, платежи, финмониторинг&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="-190" width="50" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_dpo" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Data Product Owner / Data Governance&lt;br&gt;[Person]&lt;br&gt;Владеет доменными data products и политиками доступа&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="710" y="-190" width="50" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_boundary" value="Будущее 2.0" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#666666;verticalAlign=top;fontStyle=2;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="300" width="680" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_platform" value="Событийная Data-платформа&#xa;[System]&#xa;Шина событий + доменные data products + портал самообслуживания (Data Mesh)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="360" width="240" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_legacy" value="Легаси-контур (мосты совместимости)&#xa;[System]&#xa;DWH SQL Server 2008, Power BI, PowerBuilder, ESB Apache Camel — выводится из эксплуатации" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="360" width="240" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_pharma" value="Фарма-компании&#xa;[External]&#xa;каталоги препаратов, поставки" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="750" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_devices" value="Производитель электроники / медустройства (IoT)&#xa;[External]&#xa;Телеметрия оборудования" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="750" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_regulator" value="Регуляторы&#xa;[External]&#xa;Требования к мед. и фин. данным" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="710" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_cloud" value="Облачный провайдер&#xa;[External]&#xa;IaaS/PaaS: объектное хранилище, managed Kafka, K8s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="780" y="710" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_e1" value="Самообслуживание: отчёты&lt;br&gt;и конструктор (HTTPS/SSO)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_analyst" target="ctx_platform" edge="1">
+                    <mxGeometry x="-0.1207" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="85" y="230"/>
+                            <mxPoint x="240" y="230"/>
+                        </Array>
+                        <mxPoint y="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ctx_e2" value="Клинические сервисы &lt;br&gt;и ИИ-диагностика (HTTPS)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_doctor" target="ctx_platform" edge="1">
+                    <mxGeometry x="0.0284" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="285" y="230"/>
+                            <mxPoint x="240" y="230"/>
+                        </Array>
+                        <mxPoint y="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ctx_e3" value="Финтех-операции (HTTPS)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_banker" target="ctx_platform" edge="1">
+                    <mxGeometry x="-0.2341" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="465" y="230"/>
+                            <mxPoint x="240" y="230"/>
+                        </Array>
+                        <mxPoint y="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ctx_e4" value="Управление data products &lt;br&gt;и доступом (HTTPS)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_dpo" target="ctx_platform" edge="1">
+                    <mxGeometry x="-0.2514" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="630" y="230"/>
+                            <mxPoint x="240" y="230"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ctx_e5" value="Чтение/выгрузка через &lt;br&gt;ACL на период миграции &lt;br&gt;(CDC / Camel-bridge)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_platform" target="ctx_legacy" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_e6" value="События и данные поставок (API/Events)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_pharma" target="ctx_platform" edge="1">
+                    <mxGeometry x="-0.4706" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="110" y="610"/>
+                            <mxPoint x="180" y="610"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ctx_e7" value="Телеметрия устройств (MQTT/Events)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_devices" target="ctx_platform" edge="1">
+                    <mxGeometry x="-0.5135" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="340" y="610"/>
+                            <mxPoint x="180" y="610"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ctx_e8" value="Регуляторная отчётность (Отчёты)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_platform" target="ctx_regulator" edge="1">
+                    <mxGeometry x="0.8065" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="240" y="570"/>
+                            <mxPoint x="630" y="570"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ctx_e9" value="Развёртывание и хранение (Terraform)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="ctx_platform" target="ctx_cloud" edge="1">
+                    <mxGeometry x="0.8391" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="240" y="570"/>
+                            <mxPoint x="880" y="570"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="C4 Containers" id="c4-containers">
+        <mxGraphModel dx="1987" dy="1209" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="cnt_analyst" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Аналитик / бизнес-пользователь&lt;br&gt;[Person]&lt;br&gt;Отчёты, конструктор срезов&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="290" width="50" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dpo" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Data Product Owner&lt;br&gt;[Person]&lt;br&gt;Владеет доменным data product&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="600" width="50" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_boundary" value="Будущее 2.0 — Data-платформа" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#666666;verticalAlign=top;fontStyle=2;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="220" width="1350" height="780" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_portal" value="Портал самообслуживания (Self-service BI)&#xa;[React + BI-движок (Superset/Metabase)]&#xa;Каталог отчётов, конструктор срезов, RBAC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="280" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_catalog" value="Каталог данных и контрактов&#xa;[DataHub/OpenMetadata]&#xa;Реестр data products, схемы, lineage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="280" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_bus" value="Шина событий&#xa;[Apache Kafka]&#xa;Доменные топики, партиционирование" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="450" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_schema" value="Schema Registry&#xa;[Confluent/Apicurio]&#xa;Версионируемые контракты" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1150" y="250" width="200" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dlq" value="DLQ + обработка ошибок&#xa;[Kafka topics + сервис]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="250" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dp_boundary" value="Доменные data products" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#666666;verticalAlign=top;fontStyle=2;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="440" width="500" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dp_clinical" value="Patient Care data product&#xa;[Python/Go]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="480" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dp_ai" value="Diagnostics AI data product&#xa;[Python]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="480" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dp_lending" value="Lending data product&#xa;[Java/Go]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="580" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dp_payments" value="Payments data product&#xa;[Go]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="580" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dp_customer" value="Customer 360 data product&#xa;[Go]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="680" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dp_finance" value="Finance/Reporting data product&#xa;[Java]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="680" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_lake" value="Lakehouse / объектное хранилище&#xa;[S3 + ClickHouse/Iceberg]" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1180" y="485" width="200" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_stream" value="Потоковые витрины&#xa;[Kafka Streams / Flink + dbt]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="610" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_acl" value="ACL / Legacy Bridge&#xa;[Camel-bridge + Debezium CDC]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="730" y="870" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_dwh" value="DWH SQL Server 2008 (legacy)&#xa;[External]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="700" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_camel" value="ESB Apache Camel (legacy)&#xa;[External]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1160" y="890" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_cloud" value="Облачный провайдер&#xa;[External]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="730" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_e1" value="Запрашивает отчёты/срезы &lt;br&gt;(HTTPS/SSO)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_analyst" target="cnt_portal" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="190" y="90"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e2" value="Обнаружение data&lt;br&gt;products (API)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_portal" target="cnt_catalog" edge="1">
+                    <mxGeometry x="-0.3913" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e3" value="Чтение near-real-time витрин (SQL/API)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_portal" target="cnt_stream" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="210" y="390"/>
+                            <mxPoint x="900" y="390"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e4" value="Чтение исторических витрин (SQL)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_portal" target="cnt_lake" edge="1">
+                    <mxGeometry x="-0.3778" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="210" y="410"/>
+                            <mxPoint x="1280" y="410"/>
+                        </Array>
+                        <mxPoint x="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e5" value="Регистрация и политики (API)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_dpo" target="cnt_catalog" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="490" y="90"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e6" value="Публикует события (Kafka)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_dp_clinical" target="cnt_bus" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="220" y="570"/>
+                            <mxPoint x="735" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e7" value="Публикует &lt;br&gt;«Пройдено &lt;br&gt;исследование&lt;br&gt;&amp;nbsp;ИИ»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_dp_ai" target="cnt_bus" edge="1">
+                    <mxGeometry x="0.0014" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e8" value="Публикует «Создан кредитный договор»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_dp_lending" target="cnt_bus" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="220" y="660"/>
+                            <mxPoint x="735" y="660"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e9" value="Публикует &lt;br&gt;«Платёж проведён»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;entryX=0.385;entryY=0.983;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="cnt_dp_payments" target="cnt_bus" edge="1">
+                    <mxGeometry x="-0.2454" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="735" y="615"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e10" value="Публикует/подписывается" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_dp_customer" target="cnt_bus" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="220" y="770"/>
+                            <mxPoint x="735" y="770"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e11" value="Подписывается на &lt;br&gt;фин-события" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_dp_finance" target="cnt_bus" edge="1">
+                    <mxGeometry x="-0.5294" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="735" y="715"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e12" value="Валидация&lt;br&gt;контрактов (API)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_bus" target="cnt_schema" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1130" y="500"/>
+                            <mxPoint x="1130" y="300"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e13" value="Невалидные события" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_bus" target="cnt_dlq" edge="1">
+                    <mxGeometry x="0.7333" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e14" value="Потоковая обработка" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_bus" target="cnt_stream" edge="1">
+                    <mxGeometry x="-0.4146" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="760" y="430"/>
+                            <mxPoint x="970" y="430"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e15" value="Материализация витрин" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="cnt_stream" target="cnt_lake" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="cnt_e16" value="CDC-выгрузка &lt;br&gt;(Debezium)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="cnt_acl" target="cnt_dwh" edge="1">
+                    <mxGeometry x="0.8333" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1020" y="910"/>
+                            <mxPoint x="1020" y="860"/>
+                            <mxPoint x="1300" y="860"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e17" value="Адаптация старых интеграций" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="cnt_acl" edge="1">
+                    <mxGeometry x="0.907" relative="1" as="geometry">
+                        <mxPoint x="1300" y="890" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1020" y="910"/>
+                            <mxPoint x="1020" y="860"/>
+                            <mxPoint x="1300" y="860"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e18" value="Публикует события из легаси" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;entryX=0.385;entryY=0.985;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="cnt_acl" target="cnt_bus" edge="1">
+                    <mxGeometry x="-0.6585" y="-10" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="735" y="710"/>
+                            <mxPoint x="735" y="710"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cnt_e19" value="Развёрнуто в облаке (K8s)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="cnt_stream" edge="1">
+                    <mxGeometry x="-0.2" relative="1" as="geometry">
+                        <mxPoint x="970" y="730" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="970" y="730"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="C4 Component - Портал" id="c4-component-portal">
+        <mxGraphModel dx="1625" dy="989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="prt_analyst" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Аналитик&lt;br&gt;[Person]&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="50" width="40" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_boundary" value="Портал самообслуживания" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#666666;verticalAlign=top;fontStyle=2;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="240" width="760" height="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_ui" value="UI / Report Builder&#xa;[React]&#xa;Конструктор срезов и дашбордов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="300" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_api" value="Query API / Semantic Layer&#xa;[Go]&#xa;Единая семантика метрик" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="300" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_authz" value="RBAC / Access Control&#xa;[OPA + SSO]&#xa;Доступ по уровню сотрудника" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="450" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_disc" value="Discovery-клиент каталога&#xa;[Go]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="300" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_cache" value="Query cache&#xa;[Redis]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="450" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_stream" value="Потоковые витрины&#xa;[Flink/ClickHouse]" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="660" width="180" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_lake" value="Lakehouse&#xa;[Iceberg/S3]" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="660" width="180" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_catalog" value="Каталог данных&#xa;[DataHub]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1000" y="300" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_e1" value="Строит отчёт/срез (HTTPS)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_analyst" target="prt_ui" edge="1">
+                    <mxGeometry x="0.2593" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="220" y="90"/>
+                        </Array>
+                        <mxPoint y="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="prt_e2" value="Запрос метрик (GraphQL/REST)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_ui" target="prt_api" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="270" y="280"/>
+                            <mxPoint x="500" y="280"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="prt_e3" value="Проверка прав" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_api" target="prt_authz" edge="1">
+                    <mxGeometry x="0.3333" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="prt_e4" value="Какие data products доступны" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_api" target="prt_disc" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="530" y="280"/>
+                            <mxPoint x="720" y="280"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="prt_e5" value="Метаданные/схемы (API)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_disc" target="prt_catalog" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="prt_e6" value="Чтение/запись кэша" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_api" target="prt_cache" edge="1">
+                    <mxGeometry x="0.7931" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="500" y="410"/>
+                            <mxPoint x="730" y="410"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="prt_e7" value="Near-real-time агрегаты (SQL)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_api" target="prt_stream" edge="1">
+                    <mxGeometry x="0.3929" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="500" y="410"/>
+                            <mxPoint x="210" y="410"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="prt_e8" value="Исторические витрины (SQL)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="prt_api" target="prt_lake" edge="1">
+                    <mxGeometry x="0.5" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="500" y="410"/>
+                            <mxPoint x="380" y="410"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="C4 Component - Lending" id="c4-component-lending">
+        <mxGraphModel dx="1490" dy="907" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="lnd_bus" value="Шина событий (Kafka)&#xa;[External]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1000" y="480" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_schema" value="Schema Registry&#xa;[External]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1000" y="355" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_boundary" value="Lending data product" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#666666;verticalAlign=top;fontStyle=2;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="290" width="780" height="470" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_ingest" value="Ingest / Source connectors&#xa;[Go]&#xa;Приём из источников и CDC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="360" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_domainlogic" value="Domain core (агрегаты)&#xa;[Java]&#xa;КредитныйДоговор, инварианты" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="350" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_outbox" value="Outbox / Publisher&#xa;[Go]&#xa;Transactional outbox → Kafka" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="480" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_contract" value="Contract validation&#xa;[Go]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="647" y="355" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_store" value="Domain store&#xa;[PostgreSQL]&#xa;Состояние агрегатов" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="600" width="200" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_serve" value="Data product API / витрина&#xa;[Go]&#xa;Output port" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="615" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_e1" value="Запись" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="lnd_ingest" target="lnd_store" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_e2" value="Чтение/запись&lt;br&gt;агрегатов" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="lnd_domainlogic" target="lnd_store" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="370" y="395"/>
+                            <mxPoint x="370" y="660"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lnd_e3" value="Доменное событие" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="lnd_domainlogic" target="lnd_outbox" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_e4" value="Валидация контракта" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="lnd_outbox" target="lnd_contract" edge="1">
+                    <mxGeometry x="0.5431" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lnd_e5" value="Проверка &lt;br&gt;совместимости (API)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="lnd_contract" target="lnd_schema" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lnd_e6" value="Публикация «Создан &lt;br&gt;кредитный договор» (Kafka)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="lnd_outbox" target="lnd_bus" edge="1">
+                    <mxGeometry x="0.36" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lnd_e7" value="Витрина&lt;br&gt;домена" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" parent="1" source="lnd_serve" target="lnd_store" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -1,0 +1,18 @@
+environment = "stage"
+subnet = "future20-stage-subnet"
+vm_disk_names = [
+  "future20-stage-vm-0-disk",
+  "future20-stage-vm-1-disk",
+]
+vm_ids = [
+  "5134dc8698dd2b5530dea43ab1611d1b0c526d65c8a8071d7a9cdb6dcd990f4e",
+  "96675d8fc37bf8b0e4dbc3f7fff3b9fcb31b1af7d02bc2b300cfa58403d54073",
+]
+vm_ip_addresses = [
+  "172.30.20.3",
+  "172.30.20.2",
+]
+vm_names = [
+  "future20-stage-vm-0",
+  "future20-stage-vm-1",
+]

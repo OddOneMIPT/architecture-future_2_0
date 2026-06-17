@@ -1,0 +1,13 @@
+### docker compose -f docker-compose.minio.yml up -d
+
+NAME             STATUS                    PORTS
+future20-minio   Up 16 seconds (healthy)   0.0.0.0:9000-9001->9000-9001/tcp
+
+### Инициализация бакета (createbucket):
+Added `local` successfully.
+Bucket created successfully `local/future20-tfstate`.
+local/future20-tfstate versioning is enabled
+bucket future20-tfstate ready
+
+### MinIO health:
+http://localhost:9000/minio/health/live -> HTTP 200

@@ -1,0 +1,188 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_network.subnet will be created
+  + resource "docker_network" "subnet" {
+      + driver      = "bridge"
+      + id          = (known after apply)
+      + internal    = (known after apply)
+      + ipam_driver = "default"
+      + name        = "future20-dev-subnet"
+      + options     = (known after apply)
+      + scope       = (known after apply)
+
+      + ipam_config {
+          + subnet   = "172.30.10.0/24"
+            # (2 unchanged attributes hidden)
+        }
+
+      + labels {
+          + label = "environment"
+          + value = "dev"
+        }
+    }
+
+  # module.vm.docker_container.vm[0] will be created
+  + resource "docker_container" "vm" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = [
+          + "/bin/sh",
+          + "-c",
+          + "mkdir -p /data/.ssh && printf '%s\\n' \"$SSH_PUBLIC_KEY\" > /data/.ssh/authorized_keys && chmod 600 /data/.ssh/authorized_keys && exec nginx -g 'daemon off;'",
+        ]
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + cpu_shares                                  = 1024
+      + entrypoint                                  = (known after apply)
+      + env                                         = (sensitive value)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = (known after apply)
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + memory                                      = 512
+      + memory_reservation                          = 0
+      + must_run                                    = true
+      + name                                        = "future20-dev-vm-0"
+      + network_data                                = (known after apply)
+      + network_mode                                = "bridge"
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "unless-stopped"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + healthcheck (known after apply)
+
+      + labels {
+          + label = "cores"
+          + value = "1"
+        }
+      + labels {
+          + label = "disk_size_gb"
+          + value = "10"
+        }
+      + labels {
+          + label = "environment"
+          + value = "dev"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+      + labels {
+          + label = "memory_mb"
+          + value = "512"
+        }
+      + labels {
+          + label = "module"
+          + value = "vm"
+        }
+
+      + networks_advanced {
+          + aliases      = []
+          + name         = "future20-dev-subnet"
+            # (3 unchanged attributes hidden)
+        }
+
+      + ports {
+          + external = 18080
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+
+      + volumes {
+          + container_path = "/data"
+          + volume_name    = "future20-dev-vm-0-disk"
+            # (2 unchanged attributes hidden)
+        }
+    }
+
+  # module.vm.docker_image.this will be created
+  + resource "docker_image" "this" {
+      + id           = (known after apply)
+      + image_id     = (known after apply)
+      + keep_locally = true
+      + name         = "nginx:alpine"
+      + repo_digest  = (known after apply)
+    }
+
+  # module.vm.docker_volume.disk[0] will be created
+  + resource "docker_volume" "disk" {
+      + driver     = (known after apply)
+      + id         = (known after apply)
+      + mountpoint = (known after apply)
+      + name       = "future20-dev-vm-0-disk"
+
+      + labels {
+          + label = "disk_size_gb"
+          + value = "10"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + environment     = "dev"
+  + subnet          = "future20-dev-subnet"
+  + vm_disk_names   = [
+      + "future20-dev-vm-0-disk",
+    ]
+  + vm_ids          = [
+      + (known after apply),
+    ]
+  + vm_ip_addresses = [
+      + (known after apply),
+    ]
+  + vm_names        = [
+      + "future20-dev-vm-0",
+    ]
+module.vm.docker_volume.disk[0]: Creating...
+module.vm.docker_image.this: Creating...
+docker_network.subnet: Creating...
+module.vm.docker_volume.disk[0]: Creation complete after 0s [id=future20-dev-vm-0-disk]
+module.vm.docker_image.this: Creation complete after 0s [id=sha256:8b1e78743a03dbb2c95171cc58639fef29abc8816598e27fb910ed2e621e589anginx:alpine]
+docker_network.subnet: Creation complete after 2s [id=728b04c8dc18f43cdbb0e2643b5f777041e960aa1d98d0eda6ddbd13e0b350ff]
+module.vm.docker_container.vm[0]: Creating...
+module.vm.docker_container.vm[0]: Creation complete after 0s [id=848660b3e182d2d593ddc5c19694b824d68ce68c932f60ca02171592acf6c0ec]
+
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+environment = "dev"
+subnet = "future20-dev-subnet"
+vm_disk_names = [
+  "future20-dev-vm-0-disk",
+]
+vm_ids = [
+  "848660b3e182d2d593ddc5c19694b824d68ce68c932f60ca02171592acf6c0ec",
+]
+vm_ip_addresses = [
+  "172.30.10.2",
+]
+vm_names = [
+  "future20-dev-vm-0",
+]

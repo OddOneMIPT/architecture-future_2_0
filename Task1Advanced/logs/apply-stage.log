@@ -1,0 +1,307 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_network.subnet will be created
+  + resource "docker_network" "subnet" {
+      + driver      = "bridge"
+      + id          = (known after apply)
+      + internal    = (known after apply)
+      + ipam_driver = "default"
+      + name        = "future20-stage-subnet"
+      + options     = (known after apply)
+      + scope       = (known after apply)
+
+      + ipam_config {
+          + subnet   = "172.30.20.0/24"
+            # (2 unchanged attributes hidden)
+        }
+
+      + labels {
+          + label = "environment"
+          + value = "stage"
+        }
+    }
+
+  # module.vm.docker_container.vm[0] will be created
+  + resource "docker_container" "vm" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = [
+          + "/bin/sh",
+          + "-c",
+          + "mkdir -p /data/.ssh && printf '%s\\n' \"$SSH_PUBLIC_KEY\" > /data/.ssh/authorized_keys && chmod 600 /data/.ssh/authorized_keys && exec nginx -g 'daemon off;'",
+        ]
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + cpu_shares                                  = 2048
+      + entrypoint                                  = (known after apply)
+      + env                                         = (sensitive value)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = (known after apply)
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + memory                                      = 1024
+      + memory_reservation                          = 0
+      + must_run                                    = true
+      + name                                        = "future20-stage-vm-0"
+      + network_data                                = (known after apply)
+      + network_mode                                = "bridge"
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "unless-stopped"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + healthcheck (known after apply)
+
+      + labels {
+          + label = "cores"
+          + value = "2"
+        }
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "environment"
+          + value = "stage"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+      + labels {
+          + label = "memory_mb"
+          + value = "1024"
+        }
+      + labels {
+          + label = "module"
+          + value = "vm"
+        }
+
+      + networks_advanced {
+          + aliases      = []
+          + name         = "future20-stage-subnet"
+            # (3 unchanged attributes hidden)
+        }
+
+      + ports {
+          + external = 18090
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+
+      + volumes {
+          + container_path = "/data"
+          + volume_name    = "future20-stage-vm-0-disk"
+            # (2 unchanged attributes hidden)
+        }
+    }
+
+  # module.vm.docker_container.vm[1] will be created
+  + resource "docker_container" "vm" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = [
+          + "/bin/sh",
+          + "-c",
+          + "mkdir -p /data/.ssh && printf '%s\\n' \"$SSH_PUBLIC_KEY\" > /data/.ssh/authorized_keys && chmod 600 /data/.ssh/authorized_keys && exec nginx -g 'daemon off;'",
+        ]
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + cpu_shares                                  = 2048
+      + entrypoint                                  = (known after apply)
+      + env                                         = (sensitive value)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = (known after apply)
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + memory                                      = 1024
+      + memory_reservation                          = 0
+      + must_run                                    = true
+      + name                                        = "future20-stage-vm-1"
+      + network_data                                = (known after apply)
+      + network_mode                                = "bridge"
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "unless-stopped"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + healthcheck (known after apply)
+
+      + labels {
+          + label = "cores"
+          + value = "2"
+        }
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "environment"
+          + value = "stage"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+      + labels {
+          + label = "memory_mb"
+          + value = "1024"
+        }
+      + labels {
+          + label = "module"
+          + value = "vm"
+        }
+
+      + networks_advanced {
+          + aliases      = []
+          + name         = "future20-stage-subnet"
+            # (3 unchanged attributes hidden)
+        }
+
+      + ports {
+          + external = 18091
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+
+      + volumes {
+          + container_path = "/data"
+          + volume_name    = "future20-stage-vm-1-disk"
+            # (2 unchanged attributes hidden)
+        }
+    }
+
+  # module.vm.docker_image.this will be created
+  + resource "docker_image" "this" {
+      + id           = (known after apply)
+      + image_id     = (known after apply)
+      + keep_locally = true
+      + name         = "nginx:alpine"
+      + repo_digest  = (known after apply)
+    }
+
+  # module.vm.docker_volume.disk[0] will be created
+  + resource "docker_volume" "disk" {
+      + driver     = (known after apply)
+      + id         = (known after apply)
+      + mountpoint = (known after apply)
+      + name       = "future20-stage-vm-0-disk"
+
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+    }
+
+  # module.vm.docker_volume.disk[1] will be created
+  + resource "docker_volume" "disk" {
+      + driver     = (known after apply)
+      + id         = (known after apply)
+      + mountpoint = (known after apply)
+      + name       = "future20-stage-vm-1-disk"
+
+      + labels {
+          + label = "disk_size_gb"
+          + value = "20"
+        }
+      + labels {
+          + label = "managed-by"
+          + value = "terraform"
+        }
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + environment     = "stage"
+  + subnet          = "future20-stage-subnet"
+  + vm_disk_names   = [
+      + "future20-stage-vm-0-disk",
+      + "future20-stage-vm-1-disk",
+    ]
+  + vm_ids          = [
+      + (known after apply),
+      + (known after apply),
+    ]
+  + vm_ip_addresses = [
+      + (known after apply),
+      + (known after apply),
+    ]
+  + vm_names        = [
+      + "future20-stage-vm-0",
+      + "future20-stage-vm-1",
+    ]
+module.vm.docker_image.this: Creating...
+module.vm.docker_volume.disk[1]: Creating...
+module.vm.docker_volume.disk[0]: Creating...
+docker_network.subnet: Creating...
+module.vm.docker_volume.disk[1]: Creation complete after 0s [id=future20-stage-vm-1-disk]
+module.vm.docker_volume.disk[0]: Creation complete after 0s [id=future20-stage-vm-0-disk]
+module.vm.docker_image.this: Creation complete after 0s [id=sha256:8b1e78743a03dbb2c95171cc58639fef29abc8816598e27fb910ed2e621e589anginx:alpine]
+docker_network.subnet: Creation complete after 2s [id=9c7acc4f39ff553710eeef8572aa4bb3a17655c460761e48c6c87422eb1332bd]
+module.vm.docker_container.vm[1]: Creating...
+module.vm.docker_container.vm[0]: Creating...
+module.vm.docker_container.vm[1]: Creation complete after 0s [id=96675d8fc37bf8b0e4dbc3f7fff3b9fcb31b1af7d02bc2b300cfa58403d54073]
+module.vm.docker_container.vm[0]: Creation complete after 0s [id=5134dc8698dd2b5530dea43ab1611d1b0c526d65c8a8071d7a9cdb6dcd990f4e]
+
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+environment = "stage"
+subnet = "future20-stage-subnet"
+vm_disk_names = [
+  "future20-stage-vm-0-disk",
+  "future20-stage-vm-1-disk",
+]
+vm_ids = [
+  "5134dc8698dd2b5530dea43ab1611d1b0c526d65c8a8071d7a9cdb6dcd990f4e",
+  "96675d8fc37bf8b0e4dbc3f7fff3b9fcb31b1af7d02bc2b300cfa58403d54073",
+]
+vm_ip_addresses = [
+  "172.30.20.3",
+  "172.30.20.2",
+]
+vm_names = [
+  "future20-stage-vm-0",
+  "future20-stage-vm-1",
+]
